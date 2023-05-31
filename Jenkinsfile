@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Maven Version') {
             steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'Hema', url: 'https://github.com/papannah/maven-project.git']])
+                sh 'mvn --version'    
             }
         }
                 stage('RunTest Cases') {
