@@ -12,6 +12,13 @@ pipeline {
                 sh 'mvn clean test'
             }
         }
+        stage('Code Quality') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                sh 'mvn sonar:sonar'
+                }
+            }
+        }
         stage('Publich Test Reports') {
             steps {
                 sh 'ls /var/lib/jenkins/workspace/New_Demo_Pipeline/server/target/surefire-reports/'
@@ -30,7 +37,7 @@ pipeline {
         }
         stage('Deploy Application') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'Tomcat_Deployer', path: '', url: 'http://44.203.156.188:8090/')], contextPath: 'FirstDemo', war: '**/target/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'Tomcat_Deployer', path: '', url: 'http://3.86.144.155:8090/')], contextPath: 'FirstDemo', war: '**/target/*.war'
             }
         }
     }
