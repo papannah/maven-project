@@ -21,6 +21,7 @@ pipeline {
         }
         stage('Publich Test Reports') {
             steps {
+                junit testDataPublishers: [attachments()], testResults: '**/target/surefire-reports/*.xml'
                 sh 'ls /var/lib/jenkins/workspace/New_Demo_Pipeline/server/target/surefire-reports/'
                 jacoco()
             }
