@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Deploy Application') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'Tomcat_Deployer', path: '', url: 'http://3.86.144.155:8090/')], contextPath: 'FirstDemo', war: '**/target/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'Tomcat_Deployer', path: '', url: 'https://tomcat.phvr.co.in')], contextPath: 'Calculator', war: '**/target/*.war'
             }
         }
     }
